@@ -27,7 +27,9 @@ public class Main{
     public int getOptionShowMenu(){
 		int option = 0; 
 		System.out.println("<<<<< Welcome to NeoTunes >>>>>");
-		System.out.println("0. Exit. ");
+		System.out.println("1. Registrar un usuario\n" +
+                           "2. Mejorar usuario a premium\n" +
+                           "0. Exit. ");
 		option =  validateIntegerInput();
 		return option; 
 	}
@@ -35,9 +37,11 @@ public class Main{
     public void executeOption(int option){
 		switch(option){
 			case 1: 
+                registerUser();
 				break; 
 
 			case 2: 
+                upgradeUser();
 				break; 
 
 			case 3: 
@@ -87,5 +91,22 @@ public class Main{
     public Scanner getReader(){
 		return reader; 
 	}
+
+    public void registerUser(){
+        String nickName;
+        String id;
+        System.out.println("Ingrese su NickName");
+        nickName = reader.nextLine();
+        System.out.println("Ingrese su cedula");
+        id = reader.nextLine();
+        System.out.println(controller.registerUser(nickName, id));
+    }
+
+    public void upgradeUser(){
+        String nickName;
+        System.out.println("Ingrese su nickName");
+        nickName = reader.nextLine();
+        System.out.println(controller.upgradeUser(nickName));
+    }
 
 }
