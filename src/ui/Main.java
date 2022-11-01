@@ -2,12 +2,16 @@ package ui;
 
 import java.util.Scanner;
 
+import model.NeoTunes;
+
 public class Main{
 
     private Scanner reader;
+    private NeoTunes controller;
 
 	public Main() {
 		reader = new Scanner(System.in);
+        controller = new NeoTunes();
     }
 
     public static void main(String[] args) {
