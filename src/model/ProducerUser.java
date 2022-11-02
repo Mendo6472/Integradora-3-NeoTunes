@@ -3,7 +3,7 @@ package model;
 import java.sql.Date;
 
 public abstract class ProducerUser {
-    
+
     protected String name;
     protected String imageUrl;
     protected Date registerDate;
@@ -13,4 +13,9 @@ public abstract class ProducerUser {
         this.imageUrl = imageUrl;
         this.registerDate = new Date(System.currentTimeMillis());
     }
+
+    public String getName() {
+        return name;
+    }
+    
 }

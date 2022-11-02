@@ -27,33 +27,21 @@ public class Main{
     public int getOptionShowMenu(){
 		int option = 0; 
 		System.out.println("<<<<< Welcome to NeoTunes >>>>>");
-		System.out.println("1. Registrar un usuario\n" +
-                           "2. Mejorar usuario a premium\n" +
+		System.out.println("1. Registrar un usuario consumidor\n" +
+                           "2. Registrar un usuario productor\n" +
+                           "3. Mejorar usuario a premium\n" +
                            "0. Exit. ");
 		option =  validateIntegerInput();
 		return option; 
 	}
 
     public void executeOption(int option){
-		switch(option){
-			case 1: 
-                registerUser();
-				break; 
-
-			case 2: 
-                upgradeUser();
-				break; 
-
-			case 3: 
-				break; 
-
-			case 0: 
-				System.out.println("Exit program.");
-				break; 
-
-			default: 
-				System.out.println("Invalid Option");
-				break; 
+		switch (option) {
+			case 1 -> registerConsumerUser();
+			case 2 -> registerProducerUser();
+			case 3 -> upgradeUser();
+			case 0 -> System.out.println("Exit program.");
+			default -> System.out.println("Invalid Option");
 		}
 	}
 
@@ -92,14 +80,29 @@ public class Main{
 		return reader; 
 	}
 
-    public void registerUser(){
+    public void registerConsumerUser(){
         String nickName;
         String id;
         System.out.println("Ingrese su NickName");
         nickName = reader.nextLine();
         System.out.println("Ingrese su cedula");
         id = reader.nextLine();
-        System.out.println(controller.registerUser(nickName, id));
+        System.out.println(controller.registerConsumerUser(nickName, id));
+    }
+
+    public void registerProducerUser(){
+        String name;
+        String imageUrl;
+        int producerType;
+        System.out.println("Ingrese el nombre");
+        name = reader.nextLine();
+        System.out.println("Ingrese un url de imagen");
+        imageUrl = reader.nextLine();
+        System.out.println("Ingrese el tipo de usuario productor\n" +
+                           "1. Artista\n" + 
+                           "2. Creador de contenido");
+        producerType = validateIntegerInput();
+        System.out.println(controller.registerProducerUser(name, imageUrl, producerType));
     }
 
     public void upgradeUser(){
