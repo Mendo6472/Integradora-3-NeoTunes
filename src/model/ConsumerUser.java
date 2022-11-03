@@ -25,8 +25,16 @@ public abstract class ConsumerUser {
         return id;
     }
 
+    public ArrayList<Playlist> getPlaylists() {
+        return playlists;
+    }
+
+    public void setPlaylists(ArrayList<Playlist> playlists) {
+        this.playlists = playlists;
+    }
+
     public abstract String downloadSong();
 
-    public abstract String addPlaylist();
+    public abstract String addPlaylist(String name, int playlistType);
     
 }

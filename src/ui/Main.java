@@ -3,6 +3,7 @@ package ui;
 import java.util.Scanner;
 
 import model.NeoTunes;
+import model.PlaylistType;
 
 public class Main{
 
@@ -31,6 +32,7 @@ public class Main{
                            "2. Registrar un usuario productor\n" +
                            "3. Mejorar usuario a premium\n" +
 						   "4. Añadir cancion o podcast\n" +
+						   "5. Crear playlist\n" +
                            "0. Exit. ");
 		option =  validateIntegerInput();
 		return option; 
@@ -42,6 +44,7 @@ public class Main{
 			case 2 -> registerProducerUser();
 			case 3 -> upgradeUser();
 			case 4 -> askKindOfAudio();
+			case 5 -> createPlaylist();
 			case 0 -> System.out.println("Exit program.");
 			default -> System.out.println("Invalid Option");
 		}
@@ -186,6 +189,26 @@ public class Main{
 		System.out.println("Ingrese la duracion (xx:xx:xx)");
 		duration = reader.nextLine();
 		System.out.println(controller.addPodcast(name, description, category, url, duration));
+	}
+
+	public void createPlaylist(){
+		String nickName;
+		String playlistName;
+		int playlistType;
+		System.out.println("Ingrese el NickName del usuario");
+		nickName = reader.nextLine();
+		System.out.println("Ingrese el nombre de la playlist a crear");
+		playlistName = reader.nextLine();
+		System.out.println("Ingrese el tipo de playlist\n" + 
+						   "1. Solo canciones\n" + 
+						   "2. Solo podcasts\n" + 
+						   "3. Canciones y podcasts");
+		playlistType = validateIntegerInput();
+		if(playlistType < 1 || playlistType > 3){
+			System.out.println("Tipo de playlist incorrecto");
+			return;
+		}
+		System.out.println(controller.createPlaylist(nickName, playlistName, playlistType));
 	}
 
 }

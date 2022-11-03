@@ -11,8 +11,10 @@ public class PremiumUser extends ConsumerUser{
         return msj;
     }
 
-    public String addPlaylist(){
-        String msj = "";
+    public String addPlaylist(String name, int playlistType){
+        String msj = "Playlist creada exitosamente";
+        Playlist playlist = new Playlist(name, playlistType);
+        playlists.add(playlist);
         return msj;
     }
     

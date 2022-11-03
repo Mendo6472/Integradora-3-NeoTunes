@@ -51,8 +51,10 @@ public class NeoTunes {
             return msj = "El usuario ya es premium";
         }
         String id = consumersUsers.get(userPos).getId();
+        ArrayList<Playlist> playlists = consumersUsers.get(userPos).getPlaylists();
         ConsumerUser user = new PremiumUser(nickName, id);
         consumersUsers.set(userPos, user);
+        consumersUsers.get(userPos).setPlaylists(playlists);
         msj = "El usuario se a cambiado a premium exitosamente";
         return msj;
     }
@@ -70,6 +72,16 @@ public class NeoTunes {
         int durationInSeconds = 0; //TODO - calculate duration in seconds
         Audio podcast = new Podcast(name, url, duration, durationInSeconds, description, category);
         audios.add(podcast);
+        return msj;
+    }
+
+    public String createPlaylist(String nickName, String playlistName, int playlistType){
+        String msj = "";
+        int userPos = searchNickNamePos(nickName);
+        if(userPos == -1){
+            return msj = "El nickname no existe";
+        }
+        msj = consumersUsers.get(userPos).addPlaylist(playlistName, playlistType);
         return msj;
     }
 
