@@ -5,10 +5,12 @@ public class NeoTunes {
 
     private ArrayList<ConsumerUser> consumersUsers;
     private ArrayList<ProducerUser> producersUsers;
+    private ArrayList<Audio> audios;
 
     public NeoTunes(){
         consumersUsers = new ArrayList<ConsumerUser>();
         producersUsers = new ArrayList<ProducerUser>();
+        audios = new ArrayList<Audio>();
     }
 
     public String registerConsumerUser(String nickName, String id){
@@ -52,6 +54,22 @@ public class NeoTunes {
         ConsumerUser user = new PremiumUser(nickName, id);
         consumersUsers.set(userPos, user);
         msj = "El usuario se a cambiado a premium exitosamente";
+        return msj;
+    }
+
+    public String addSong(String name, String album, int genre, String url, String duration, double cost){
+        String msj = "Cancion añadida exitosamente";
+        int durationInSeconds = 0; //TODO - calculate duration in seconds
+        Audio song = new Song(name, url, duration, durationInSeconds, album, genre, cost);
+        audios.add(song);
+        return msj;
+    }
+
+    public String addPodcast(String name, String description, int category, String url, String duration){
+        String msj = "Podcast añadido exitosamente";
+        int durationInSeconds = 0; //TODO - calculate duration in seconds
+        Audio podcast = new Podcast(name, url, duration, durationInSeconds, description, category);
+        audios.add(podcast);
         return msj;
     }
 

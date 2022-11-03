@@ -9,6 +9,14 @@ public class StandardUser extends ConsumerUser{
         super(nickName, id);
     }
 
+    public String downloadSong(){
+        String msj = "";
+        return msj;
+    }
 
+    public String addPlaylist(){
+        String msj = "";
+        return msj;
+    }
 
 }

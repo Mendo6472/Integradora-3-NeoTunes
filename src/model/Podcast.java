@@ -1,7 +1,18 @@
 package model;
 
 public class Podcast extends Audio{
-    public Podcast(String name, String url){
-        super(name, url);
+
+    private String description;
+    private Category category;
+
+    public Podcast(String name, String url, String duration, int durationInSeconds, String description, int category){
+        super(name, url, duration, durationInSeconds);
+        this.description = description;
+        switch(category){
+            case 1 -> this.category = Category.POLITICS;
+            case 2 -> this.category = Category.ENTERTAINMENT;
+            case 3 -> this.category = Category.VIDEOGAMES;
+            case 4 -> this.category = Category.FASHION;
+        }
     }
 }
