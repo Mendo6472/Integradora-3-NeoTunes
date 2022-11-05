@@ -21,8 +21,54 @@ public class Playlist {
         return playlist;
     }
 
-    public void addAudioToPlaylist(Audio audio){
-        this.playlist.add(audio);
+    public String getName() {
+        return name;
+    }
+
+    public String addAudioToPlaylist(Audio audio){
+        String msj = "Audio añadido con exito";
+        if(this.playlistType == PlaylistType.SONGS){
+            msj = addSongToPlaylist(audio);
+        } else if (this.playlistType == PlaylistType.PODCASTS){
+            msj = addPodcastToPlaylist(audio);
+        } else {
+            playlist.add(audio);
+        }
+        return msj;
+    }
+
+    public String addSongToPlaylist(Audio audio){
+        String msj = "Audio añadido con exito";
+        if(!(audio instanceof Song)){
+            return msj = "La playlist solo acepta canciones.";
+        }
+        playlist.add(audio);
+        return msj;
+    }
+
+    public String addPodcastToPlaylist(Audio audio){
+        String msj = "Audio añadido con exito";
+        if(!(audio instanceof Podcast)){
+            return msj = "La playlist solo acepta podcasts.";
+        }
+        playlist.add(audio);
+        return msj;
+    }
+
+    public int searchAudioPos(String name){
+        int pos = -1;
+        boolean found = false;
+        for(int i = 0; i < playlist.size() && !found; i++){
+            if(playlist.get(i).getName().equals(name)){
+                pos = i;
+                found = true;
+            }
+        }
+        return pos;
+    }
+
+    public void removeAudioFromPlaylist(int audioPos){
+        playlist.remove(audioPos);
     }
 
 }

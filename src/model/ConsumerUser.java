@@ -33,6 +33,33 @@ public abstract class ConsumerUser {
         this.playlists = playlists;
     }
 
+    public int searchPlaylistPos(String name){
+        int pos = -1;
+        boolean found = false;
+        for(int i = 0; i < playlists.size() && !found; i++){
+            if(playlists.get(i).getName().equals(name)){
+                pos = i;
+                found = true;
+            }
+        }
+        return pos;
+    }
+
+    public int searchAudioPos(String name, int playlistPos){
+        int pos = playlists.get(playlistPos).searchAudioPos(name);
+        return pos;
+    }
+
+    public void removeAudioFromPlaylist(int audioPos, int playlistPos){
+        playlists.get(playlistPos).removeAudioFromPlaylist(audioPos);
+    }
+
+    public String addAudioToPlaylist(Audio audio, int playlistPos){
+        String msj = "";
+        msj = playlists.get(playlistPos).addAudioToPlaylist(audio);
+        return msj;
+    }
+
     public abstract String downloadSong();
 
     public abstract String addPlaylist(String name, int playlistType);

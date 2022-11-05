@@ -20,4 +20,8 @@ public abstract class Audio {
         this.ammountOfPlays += addAmmount;
     }
 
+    public String getName() {
+        return name;
+    }
+
 }

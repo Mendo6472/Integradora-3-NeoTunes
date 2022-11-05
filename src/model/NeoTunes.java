@@ -76,12 +76,51 @@ public class NeoTunes {
     }
 
     public String createPlaylist(String nickName, String playlistName, int playlistType){
-        String msj = "";
+        String msj = "Playlist creada exitosamente";
         int userPos = searchNickNamePos(nickName);
         if(userPos == -1){
             return msj = "El nickname no existe";
         }
+        if(consumersUsers.get(userPos).searchPlaylistPos(playlistName) != -1){
+            return msj = "Una playlist con ese nombre ya existe";
+        }
         msj = consumersUsers.get(userPos).addPlaylist(playlistName, playlistType);
+        return msj;
+    }
+
+    public String addAudioToPlaylist(String nickName, String playlistName, String audioName){
+        String msj = "Cancion añadida exitosamente";
+        int userPos = searchNickNamePos(nickName);
+        if(userPos == -1){
+            return msj = "Un usuario con ese NickName no existe";
+        }
+        int playlistPos = consumersUsers.get(userPos).searchPlaylistPos(playlistName);
+        if(playlistPos == -1){
+            return msj = "Una playlist con ese nombre no existe";
+        }
+        int audioPos = searchAudioPos(audioName);
+        if(audioPos == -1){
+            return msj = "Un audio con ese nombre no existe";
+        }
+        msj = consumersUsers.get(userPos).addAudioToPlaylist(audios.get(audioPos), playlistPos);
+        return msj;
+    }
+
+    public String removeAudioOfPlaylist(String nickName, String playlistName, String audioName){
+        String msj = "Audio removido con exito";
+        int userPos = searchNickNamePos(nickName);
+        if(userPos == -1){
+            return msj = "Un usuario con ese NickName no existe";
+        }
+        int playlistPos = consumersUsers.get(userPos).searchPlaylistPos(playlistName);
+        if(playlistPos == -1){
+            return msj = "Una playlist con ese nombre no existe";
+        }
+        int audioPos = consumersUsers.get(userPos).searchAudioPos(audioName, playlistPos);
+        if(audioPos == -1){
+            return msj = "Un audio con ese nombre no existe";
+        }
+        consumersUsers.get(userPos).removeAudioFromPlaylist(audioPos, playlistPos);
         return msj;
     }
 
@@ -102,6 +141,18 @@ public class NeoTunes {
         boolean found = false;
         for(int i = 0; i < producersUsers.size() && !found; i++){
             if(producersUsers.get(i).getName().equals(name)){
+                pos = i;
+                found = true;
+            }
+        }
+        return pos;
+    }
+
+    public int searchAudioPos(String name){
+        int pos = -1;
+        boolean found = false;
+        for(int i = 0; i < audios.size() && !found; i++){
+            if(audios.get(i).getName().equals(name)){
                 pos = i;
                 found = true;
             }

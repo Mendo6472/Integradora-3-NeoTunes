@@ -1,9 +1,7 @@
 package ui;
 
 import java.util.Scanner;
-
 import model.NeoTunes;
-import model.PlaylistType;
 
 public class Main{
 
@@ -33,6 +31,7 @@ public class Main{
                            "3. Mejorar usuario a premium\n" +
 						   "4. Añadir cancion o podcast\n" +
 						   "5. Crear playlist\n" +
+						   "6. Editar playlist\n" +
                            "0. Exit. ");
 		option =  validateIntegerInput();
 		return option; 
@@ -45,6 +44,7 @@ public class Main{
 			case 3 -> upgradeUser();
 			case 4 -> askKindOfAudio();
 			case 5 -> createPlaylist();
+			case 6 -> editPlaylist();
 			case 0 -> System.out.println("Exit program.");
 			default -> System.out.println("Invalid Option");
 		}
@@ -209,6 +209,45 @@ public class Main{
 			return;
 		}
 		System.out.println(controller.createPlaylist(nickName, playlistName, playlistType));
+	}
+
+	public void editPlaylist(){
+		int option;
+		System.out.println("Que deseas hacer?\n" + 
+						   "1. Añadir audio a playlist\n" +
+						   "2. Eliminar audio de playlist");
+		option = validateIntegerInput();
+		switch(option){
+			case 1 -> addAudioToPlaylist();
+			case 2 -> removeAudioOfPlaylist();
+			default -> System.out.println("Opcion incorrecta");
+		}
+	}
+
+	public void addAudioToPlaylist(){
+		String nickName;
+		String playlistName;
+		String audioName;
+		System.out.println("Ingrese el NickName del usuario");
+		nickName = reader.nextLine();
+		System.out.println("Ingrese el nombre de la playlist");
+		playlistName = reader.nextLine();
+		System.out.println("Ingrese el nombre del audio a añadir");
+		audioName = reader.nextLine();
+		System.out.println(controller.addAudioToPlaylist(nickName, playlistName, audioName));
+	}
+
+	public void removeAudioOfPlaylist(){
+		String nickName;
+		String playlistName;
+		String audioName;
+		System.out.println("Ingrese el nickName");
+		nickName = reader.nextLine();
+		System.out.println("Ingrese el nombre de la playlist");
+		playlistName = reader.nextLine();
+		System.out.println("Ingrese el nombre de el audio");
+		audioName = reader.nextLine();
+		System.out.println(controller.removeAudioOfPlaylist(nickName, playlistName, audioName));
 	}
 
 }
