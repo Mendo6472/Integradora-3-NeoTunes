@@ -10,6 +10,10 @@ public abstract class ConsumerUser {
     protected Date registerDate;
     protected ArrayList<Playlist> playlists;
 
+    /**
+     * @param nickName
+     * @param id
+     */
     public ConsumerUser(String nickName, String id){
         this.nickName = nickName;
         this.id = id;
@@ -17,22 +21,38 @@ public abstract class ConsumerUser {
         this.playlists = new ArrayList<Playlist>();
     }
 
+    /**
+     * @return
+     */
     public String getNickName() {
         return nickName;
     }
 
+    /**
+     * @return
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     * @return
+     */
     public ArrayList<Playlist> getPlaylists() {
         return playlists;
     }
 
+    /**
+     * @param playlists
+     */
     public void setPlaylists(ArrayList<Playlist> playlists) {
         this.playlists = playlists;
     }
 
+    /**
+     * @param name
+     * @return
+     */
     public int searchPlaylistPos(String name){
         int pos = -1;
         boolean found = false;
@@ -45,23 +65,45 @@ public abstract class ConsumerUser {
         return pos;
     }
 
+    /**
+     * @param name
+     * @param playlistPos
+     * @return
+     */
     public int searchAudioPos(String name, int playlistPos){
         int pos = playlists.get(playlistPos).searchAudioPos(name);
         return pos;
     }
 
+    /**
+     * @param audioPos
+     * @param playlistPos
+     */
     public void removeAudioFromPlaylist(int audioPos, int playlistPos){
         playlists.get(playlistPos).removeAudioFromPlaylist(audioPos);
     }
 
+    /**
+     * @param audio
+     * @param playlistPos
+     * @return
+     */
     public String addAudioToPlaylist(Audio audio, int playlistPos){
         String msj = "";
         msj = playlists.get(playlistPos).addAudioToPlaylist(audio);
         return msj;
     }
 
+    /**
+     * @return
+     */
     public abstract String downloadSong();
 
+    /**
+     * @param name
+     * @param playlistType
+     * @return
+     */
     public abstract String addPlaylist(String name, int playlistType);
     
 }

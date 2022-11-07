@@ -7,6 +7,10 @@ public class Playlist {
     private String name;
     private PlaylistType playlistType;
 
+    /**
+     * @param name
+     * @param playlistType
+     */
     public Playlist(String name, int playlistType){
         playlist = new ArrayList<Audio>();
         this.name = name;
@@ -17,14 +21,24 @@ public class Playlist {
         }
     }
 
+    /**
+     * @return
+     */
     public ArrayList<Audio> getPlaylist() {
         return playlist;
     }
 
+    /**
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * @param audio
+     * @return
+     */
     public String addAudioToPlaylist(Audio audio){
         String msj = "Audio añadido con exito";
         if(this.playlistType == PlaylistType.SONGS){
@@ -37,6 +51,10 @@ public class Playlist {
         return msj;
     }
 
+    /**
+     * @param audio
+     * @return
+     */
     public String addSongToPlaylist(Audio audio){
         String msj = "Audio añadido con exito";
         if(!(audio instanceof Song)){
@@ -46,6 +64,10 @@ public class Playlist {
         return msj;
     }
 
+    /**
+     * @param audio
+     * @return
+     */
     public String addPodcastToPlaylist(Audio audio){
         String msj = "Audio añadido con exito";
         if(!(audio instanceof Podcast)){
@@ -55,6 +77,10 @@ public class Playlist {
         return msj;
     }
 
+    /**
+     * @param name
+     * @return
+     */
     public int searchAudioPos(String name){
         int pos = -1;
         boolean found = false;
@@ -67,6 +93,9 @@ public class Playlist {
         return pos;
     }
 
+    /**
+     * @param audioPos
+     */
     public void removeAudioFromPlaylist(int audioPos){
         playlist.remove(audioPos);
     }

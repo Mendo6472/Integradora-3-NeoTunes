@@ -2,6 +2,10 @@ package model;
 
 public class PremiumUser extends ConsumerUser{
 
+    /**
+     * @param nickName
+     * @param id
+     */
     public PremiumUser(String nickName, String id){
         super(nickName, id);
     }

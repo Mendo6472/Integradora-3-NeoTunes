@@ -8,6 +8,12 @@ public abstract class Audio {
     protected String duration;
     protected int durationInSeconds;
 
+    /**
+     * @param name
+     * @param url
+     * @param duration
+     * @param durationInSeconds
+     */
     public Audio(String name, String url, String duration, int durationInSeconds){
         this.name = name;
         this.url = url;
@@ -16,10 +22,16 @@ public abstract class Audio {
         this.durationInSeconds = durationInSeconds;
     }
 
+    /**
+     * @param addAmmount
+     */
     public void addAmmountOfPlays(int addAmmount) {
         this.ammountOfPlays += addAmmount;
     }
 
+    /**
+     * @return
+     */
     public String getName() {
         return name;
     }

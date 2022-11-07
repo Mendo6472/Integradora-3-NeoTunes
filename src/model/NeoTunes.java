@@ -13,6 +13,11 @@ public class NeoTunes {
         audios = new ArrayList<Audio>();
     }
 
+    /**
+     * @param nickName
+     * @param id
+     * @return
+     */
     public String registerConsumerUser(String nickName, String id){
         String msj = "El usuario se a añadido con exito";
         if(searchNickNamePos(nickName) != -1){
@@ -23,6 +28,12 @@ public class NeoTunes {
         return msj;
     }
 
+    /**
+     * @param name
+     * @param imageUrl
+     * @param producerType
+     * @return
+     */
     public String registerProducerUser(String name, String imageUrl, int producerType){
         String msj = "El usuario se a añadido con exito.";
         if(producerType != 1 && producerType != 2){
@@ -41,6 +52,10 @@ public class NeoTunes {
         return msj;
     }
 
+    /**
+     * @param nickName
+     * @return
+     */
     public String upgradeUser(String nickName){
         String msj = "";
         int userPos = searchNickNamePos(nickName);
@@ -59,6 +74,15 @@ public class NeoTunes {
         return msj;
     }
 
+    /**
+     * @param name
+     * @param album
+     * @param genre
+     * @param url
+     * @param duration
+     * @param cost
+     * @return
+     */
     public String addSong(String name, String album, int genre, String url, String duration, double cost){
         String msj = "Cancion añadida exitosamente";
         int durationInSeconds = 0; //TODO - calculate duration in seconds
@@ -67,6 +91,14 @@ public class NeoTunes {
         return msj;
     }
 
+    /**
+     * @param name
+     * @param description
+     * @param category
+     * @param url
+     * @param duration
+     * @return
+     */
     public String addPodcast(String name, String description, int category, String url, String duration){
         String msj = "Podcast añadido exitosamente";
         int durationInSeconds = 0; //TODO - calculate duration in seconds
@@ -75,6 +107,12 @@ public class NeoTunes {
         return msj;
     }
 
+    /**
+     * @param nickName
+     * @param playlistName
+     * @param playlistType
+     * @return
+     */
     public String createPlaylist(String nickName, String playlistName, int playlistType){
         String msj = "Playlist creada exitosamente";
         int userPos = searchNickNamePos(nickName);
@@ -88,6 +126,12 @@ public class NeoTunes {
         return msj;
     }
 
+    /**
+     * @param nickName
+     * @param playlistName
+     * @param audioName
+     * @return
+     */
     public String addAudioToPlaylist(String nickName, String playlistName, String audioName){
         String msj = "Cancion añadida exitosamente";
         int userPos = searchNickNamePos(nickName);
@@ -106,6 +150,12 @@ public class NeoTunes {
         return msj;
     }
 
+    /**
+     * @param nickName
+     * @param playlistName
+     * @param audioName
+     * @return
+     */
     public String removeAudioOfPlaylist(String nickName, String playlistName, String audioName){
         String msj = "Audio removido con exito";
         int userPos = searchNickNamePos(nickName);
@@ -124,6 +174,10 @@ public class NeoTunes {
         return msj;
     }
 
+    /**
+     * @param nickName
+     * @return
+     */
     public int searchNickNamePos(String nickName){
         int pos = -1;
         boolean found = false;
@@ -136,6 +190,10 @@ public class NeoTunes {
         return pos;
     }
 
+    /**
+     * @param name
+     * @return
+     */
     public int searchNamePos(String name){
         int pos = -1;
         boolean found = false;
@@ -148,6 +206,10 @@ public class NeoTunes {
         return pos;
     }
 
+    /**
+     * @param name
+     * @return
+     */
     public int searchAudioPos(String name){
         int pos = -1;
         boolean found = false;

@@ -23,6 +23,9 @@ public class Main{
 		main.getReader().close();
 	}
 
+    /**
+     * @return
+     */
     public int getOptionShowMenu(){
 		int option = 0; 
 		System.out.println("<<<<< Welcome to NeoTunes >>>>>");
@@ -37,6 +40,9 @@ public class Main{
 		return option; 
 	}
 
+    /**
+     * @param option
+     */
     public void executeOption(int option){
 		switch (option) {
 			case 1 -> registerConsumerUser();
@@ -50,6 +56,9 @@ public class Main{
 		}
 	}
 
+    /**
+     * @return
+     */
     public int validateIntegerInput(){
 		int option = 0; 
 
@@ -66,6 +75,9 @@ public class Main{
 		return option; 
 	}
 
+    /**
+     * @return
+     */
     public double validateDoubleInput(){
 		double option = 0; 
 
@@ -81,6 +93,9 @@ public class Main{
 		return option; 
 	}
 
+    /**
+     * @return
+     */
     public Scanner getReader(){
 		return reader; 
 	}

@@ -5,6 +5,14 @@ public class Podcast extends Audio{
     private String description;
     private Category category;
 
+    /**
+     * @param name
+     * @param url
+     * @param duration
+     * @param durationInSeconds
+     * @param description
+     * @param category
+     */
     public Podcast(String name, String url, String duration, int durationInSeconds, String description, int category){
         super(name, url, duration, durationInSeconds);
         this.description = description;

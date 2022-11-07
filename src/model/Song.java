@@ -7,6 +7,15 @@ public class Song extends Audio{
     private double cost;
     
 
+    /**
+     * @param name
+     * @param url
+     * @param duration
+     * @param durationInSeconds
+     * @param album
+     * @param genre
+     * @param cost
+     */
     public Song(String name, String url, String duration, int durationInSeconds, String album, int genre, double cost){
         super(name, url, duration, durationInSeconds);
         this.album = album;
