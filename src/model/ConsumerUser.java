@@ -9,6 +9,8 @@ public abstract class ConsumerUser {
     protected String id;
     protected Date registerDate;
     protected ArrayList<Playlist> playlists;
+    protected int[] genresPlays;
+    protected int[] categoriesPlays;
 
     /**
      * @param nickName
@@ -19,6 +21,74 @@ public abstract class ConsumerUser {
         this.id = id;
         this.registerDate = new Date(System.currentTimeMillis());
         this.playlists = new ArrayList<Playlist>();
+        this.genresPlays = new int[4];
+        this.categoriesPlays = new int[4];
+    }
+
+    public void addGenrePlay(Genre genre){
+        switch(genre){
+            case ROCK -> genresPlays[0]++;
+            case POP -> genresPlays[1]++;
+            case TRAP -> genresPlays[2]++;
+            case HOUSE -> genresPlays[3]++;
+        }
+    }
+
+    public void addCategoryPlay(Category category){
+        switch (category){
+            case POLITICS -> categoriesPlays[0]++;
+            case ENTERTAINMENT -> categoriesPlays[1]++;
+            case VIDEOGAMES -> categoriesPlays[2]++;
+            case FASHION -> categoriesPlays[3]++;
+        }
+    }
+
+    public String getMostPlayedGenre(){
+        String msj = "";
+        int mostPlays = 0;
+        int mostPlayedGenre = -1;
+        for(int i = 0; i < 4; i++){
+            if(genresPlays[i] > mostPlays){
+                mostPlayedGenre = i;
+                mostPlays = genresPlays[i];
+            }
+        }
+        if(mostPlays == 0){
+            return msj = "No hay genero mas escuchado para este usuario.";
+        }
+        String genre = "";
+        switch(mostPlayedGenre){
+            case 0 -> genre = "rock";
+            case 1 -> genre = "pop";
+            case 2 -> genre = "trap";
+            case 3 -> genre = "house";
+        }
+        msj = "El genero mas escuchado de este usuario es " + genre + ", con un total de " + mostPlays +" reproducciones.";
+        return msj;
+    }
+
+    public String getMostPlayedCategory(){
+        String msj = "";
+        int mostPlays = 0;
+        int mostPlayedCategory = -1;
+        for(int i = 0; i < 4; i++){
+            if(categoriesPlays[i] > mostPlays){
+                mostPlayedCategory = i;
+                mostPlays = categoriesPlays[i];
+            }
+        }
+        if(mostPlays == 0){
+            return msj = "No hay categoria mas escuchada para este usuario.";
+        }
+        String category = "";
+        switch(mostPlayedCategory){
+            case 0 -> category = "politica";
+            case 1 -> category = "entretenimiento";
+            case 2 -> category = "videojuegos";
+            case 3 -> category = "moda";
+        }
+        msj = "La categoria mas escuchada de este usuario es " + category + ", con un total de " + mostPlays +" reproducciones.";
+        return msj;
     }
 
     /**

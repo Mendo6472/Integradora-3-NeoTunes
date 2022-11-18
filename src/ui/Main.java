@@ -78,15 +78,15 @@ public class Main{
 						   "9. Numero total de ventas y el valor total de venta de la cancion mas vendida");
 		option =  validateIntegerInput();
 		switch (option) {
-			case 1 -> registerConsumerUser();
-			case 2 -> registerProducerUser();
-			case 3 -> upgradeUser();
-			case 4 -> askKindOfAudio();
-			case 5 -> createPlaylist();
-			case 6 -> editPlaylist();
-			case 7 -> createPlaylistWithAnotherPlaylist();
-			case 8 -> playAudio();
-			case 9 -> buySong();
+			case 1 -> totalPlays();
+			case 2 -> mostPlayedGenreForAnUser();
+			case 3 -> mostPlayedGenre();
+			case 4 -> mostPlayedCategoryForAnUser();
+			case 5 -> mostPlayedCategory();
+			case 6 -> top5ArtistAndCreators();
+			case 7 -> top10SongsAndPodcasts();
+			case 8 -> sellsOfEachGenre();
+			case 9 -> mostSoldSong();
 			default -> System.out.println("Invalid Option");
 		}
 	}
@@ -344,5 +344,45 @@ public class Main{
 		System.out.println(controller.buySong(songName, nickname));
 	}
 
+	public void totalPlays(){
+		System.out.println(controller.totalPlays());
+	}
+
+	public void mostPlayedGenreForAnUser(){
+		String nickname;
+		System.out.println("Ingrese el nickname del usuario");
+		nickname = reader.nextLine();
+		System.out.println(controller.mostPlayedGenreForAnUser(nickname));
+	}
+
+	public void mostPlayedGenre(){
+		System.out.println(controller.mostPlayedGenre());
+	}
+
+	public void mostPlayedCategoryForAnUser(){
+		String nickname; 
+		System.out.println("Ingrese el nickname del usuario");
+		nickname = reader.nextLine();
+		System.out.println(controller.mostPlayedCategoryForAnUser(nickname));
+	}
+
+	public void mostPlayedCategory(){
+		System.out.println(controller.mostPlayedCategory());
+	}
+
+	public void top5ArtistAndCreators(){
+
+	}
+
+	public void top10SongsAndPodcasts(){
+
+	}
 	
+	public void sellsOfEachGenre(){
+
+	}
+
+	public void mostSoldSong(){
+		
+	}
 }

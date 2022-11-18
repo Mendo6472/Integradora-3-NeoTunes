@@ -40,4 +40,8 @@ public class Song extends Audio{
     public double getCost() {
         return cost;
     }
+
+    public Genre getGenre() {
+        return genre;
+    }
 }

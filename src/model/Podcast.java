@@ -23,4 +23,8 @@ public class Podcast extends Audio{
             case 4 -> this.category = Category.FASHION;
         }
     }
+
+    public Category getCategory() {
+        return category;
+    }
 }

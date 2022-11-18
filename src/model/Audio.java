@@ -44,4 +44,8 @@ public abstract class Audio {
         return creator;
     }
 
+    public int getAmmountOfPlays() {
+        return ammountOfPlays;
+    }
+
 }

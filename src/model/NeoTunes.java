@@ -230,9 +230,15 @@ public class NeoTunes {
         } else {
             msj = ((PremiumUser) consumersUsers.get(userPos)).playAudio(audios.get(audioPos));
         }
-        audios.get(audioPos).addAmmountOfPlays();
-        String creator = audios.get(audioPos).getCreator();
+        Audio audio = audios.get(audioPos);
+        audio.addAmmountOfPlays();
+        String creator = audio.getCreator();
         producersUsers.get(searchNamePos(creator)).addAmmountOfPlays();
+        if(audios.get(audioPos) instanceof Song){
+            consumersUsers.get(userPos).addGenrePlay(((Song) audio).getGenre());
+        } else {
+            consumersUsers.get(userPos).addCategoryPlay(((Podcast) audio).getCategory());
+        }
         return msj;
     }
 
@@ -258,6 +264,106 @@ public class NeoTunes {
         ((Song)audios.get(songPos)).addAmmountOfSells();
         int creatorPos = searchNamePos(audios.get(songPos).getCreator());
         ((ArtistUser)producersUsers.get(creatorPos)).addAmmountOfSells(((Song)audios.get(songPos)).getCost());
+        return msj;
+    }
+
+    public String totalPlays(){
+        String msj = "En total se tienen ";
+        int totalPlays = 0;
+        for(int i = 0; i < audios.size(); i++){
+            totalPlays += audios.get(i).getAmmountOfPlays();
+        }
+        msj += totalPlays + " reproducciones.";
+        return msj;
+    }
+
+    public String mostPlayedGenreForAnUser(String nickname){
+        String msj = "";
+        int userPos = searchNickNamePos(nickname);
+        if(userPos == -1){
+            return msj = "Ese usuario no existe";
+        }
+        msj = consumersUsers.get(userPos).getMostPlayedGenre();
+        return msj;
+    }
+
+    public String mostPlayedCategoryForAnUser(String nickname){
+        String msj = "";
+        int userPos = searchNickNamePos(nickname);
+        if(userPos == -1){
+            return msj = "Ese usuario no existe";
+        }
+        msj = consumersUsers.get(userPos).getMostPlayedCategory();
+        return msj;
+    }
+
+    public String mostPlayedGenre(){
+        String msj = "";
+        int[] plays = new int[4]; 
+        for(int i = 0; i < audios.size(); i++){
+            if(audios.get(i) instanceof Song){
+                switch(((Song) audios.get(i)).getGenre()){
+                    case ROCK -> plays[0]++;
+                    case POP -> plays[1]++;
+                    case TRAP -> plays[2]++;
+                    case HOUSE -> plays[3]++;
+                }
+            }
+        }
+        int mostPlays = 0;
+        int mostPlayedGenre = -1;
+        for(int i = 0; i < 4; i++){
+            if(plays[i] > mostPlays){
+                mostPlayedGenre = i;
+                mostPlays = plays[i];
+            }
+        }
+        if(mostPlays == 0){
+            return msj = "No hay genero mas escuchado.";
+        }
+        String genre = "";
+        switch(mostPlayedGenre){
+            case 0 -> genre = "rock";
+            case 1 -> genre = "pop";
+            case 2 -> genre = "trap";
+            case 3 -> genre = "house";
+        }
+        msj = "El genero mas escuchado es " + genre + ", con un total de " + mostPlays +" reproducciones.";
+        return msj;
+    }
+
+    public String mostPlayedCategory(){
+        String msj = "";
+        int[] plays = new int[4];
+        for(int i = 0; i < audios.size(); i++){
+            if(audios.get(i) instanceof Podcast){
+                switch(((Podcast)audios.get(i)).getCategory()){
+                    case POLITICS -> plays[0]++;
+                    case ENTERTAINMENT -> plays[1]++;
+                    case VIDEOGAMES -> plays[2]++;
+                    case FASHION -> plays[3]++;
+                }
+            }
+        }
+        int mostPlays = 0;
+        int mostPlayedCategory = -1;
+        for(int i = 0; i < 4; i++){
+            if(plays[i] > mostPlays){
+                mostPlayedCategory = i;
+                mostPlays = plays[i];
+            }
+        }
+        if(mostPlays == 0){
+            return msj = "No hay categoria mas escuchada.";
+        }
+        String category = "";
+        switch(mostPlayedCategory){
+            case 0 -> category = "politica";
+            case 1 -> category = "entretenimiento";
+            case 2 -> category = "videojuegos";
+            case 3 -> category = "moda";
+        }
+        msj = "La categoria mas escuchada es " + category + ", con un total de " + mostPlays +" reproducciones.";
         return msj;
     }
 
