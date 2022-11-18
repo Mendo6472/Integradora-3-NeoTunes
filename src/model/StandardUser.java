@@ -22,8 +22,23 @@ public class StandardUser extends ConsumerUser{
             return msj = "Capacidad maxima de playlists alcanzada.";
         }
         Playlist playlist = new Playlist(name, playlistType);
+        String code = playlist.getCode();
         playlists.add(playlist);
         this.ammountOfPlaylists += 1;
+        msj += ", el codigo es " + code + ", NO LO PIERDAS.";
+        return msj;
+    }
+
+    public String addPlaylistWithPlaylist(Playlist playlist){
+        String msj = "Playlist añadida exitosamente";
+        if(ammountOfPlaylists >= MAX_PLAYLISTS){
+            return msj = "Capacidad maxima de playlists alcanzada.";
+        }
+        playlist.generateCodeAgain();
+        String code = playlist.getCode();
+        playlists.add(playlist);
+        this.ammountOfPlaylists += 1;
+        msj += ", se añadio a tu lista de playlists con el codigo " + code + ", NO LO PIERDAS.";
         return msj;
     }
 

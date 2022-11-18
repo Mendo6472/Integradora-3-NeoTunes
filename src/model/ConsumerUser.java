@@ -53,16 +53,21 @@ public abstract class ConsumerUser {
      * @param name
      * @return
      */
-    public int searchPlaylistPos(String name){
+    public int searchPlaylistPos(String code){
         int pos = -1;
         boolean found = false;
         for(int i = 0; i < playlists.size() && !found; i++){
-            if(playlists.get(i).getName().equals(name)){
+            if(playlists.get(i).getCode().equals(code)){
                 pos = i;
                 found = true;
             }
         }
         return pos;
+    }
+    
+    public Playlist getPlaylist(int playlistPos){
+        Playlist playlist = playlists.get(playlistPos);
+        return playlist;
     }
 
     /**
@@ -105,5 +110,7 @@ public abstract class ConsumerUser {
      * @return
      */
     public abstract String addPlaylist(String name, int playlistType);
+
+    public abstract String addPlaylistWithPlaylist(Playlist playlist);
     
 }

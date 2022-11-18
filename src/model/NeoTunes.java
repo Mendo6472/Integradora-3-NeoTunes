@@ -109,36 +109,33 @@ public class NeoTunes {
 
     /**
      * @param nickName
-     * @param playlistName
+     * @param playlistCode
      * @param playlistType
      * @return
      */
-    public String createPlaylist(String nickName, String playlistName, int playlistType){
-        String msj = "Playlist creada exitosamente";
+    public String createPlaylist(String nickName, String playListCode, int playlistType){
+        String msj = " ";
         int userPos = searchNickNamePos(nickName);
         if(userPos == -1){
             return msj = "El nickname no existe";
         }
-        if(consumersUsers.get(userPos).searchPlaylistPos(playlistName) != -1){
-            return msj = "Una playlist con ese nombre ya existe";
-        }
-        msj = consumersUsers.get(userPos).addPlaylist(playlistName, playlistType);
+        msj = consumersUsers.get(userPos).addPlaylist(playListCode, playlistType);
         return msj;
     }
 
     /**
      * @param nickName
-     * @param playlistName
+     * @param playListCode
      * @param audioName
      * @return
      */
-    public String addAudioToPlaylist(String nickName, String playlistName, String audioName){
+    public String addAudioToPlaylist(String nickName, String playListCode, String audioName){
         String msj = "Cancion añadida exitosamente";
         int userPos = searchNickNamePos(nickName);
         if(userPos == -1){
             return msj = "Un usuario con ese NickName no existe";
         }
-        int playlistPos = consumersUsers.get(userPos).searchPlaylistPos(playlistName);
+        int playlistPos = consumersUsers.get(userPos).searchPlaylistPos(playListCode);
         if(playlistPos == -1){
             return msj = "Una playlist con ese nombre no existe";
         }
@@ -152,17 +149,17 @@ public class NeoTunes {
 
     /**
      * @param nickName
-     * @param playlistName
+     * @param playListCode
      * @param audioName
      * @return
      */
-    public String removeAudioOfPlaylist(String nickName, String playlistName, String audioName){
+    public String removeAudioOfPlaylist(String nickName, String playListCode, String audioName){
         String msj = "Audio removido con exito";
         int userPos = searchNickNamePos(nickName);
         if(userPos == -1){
             return msj = "Un usuario con ese NickName no existe";
         }
-        int playlistPos = consumersUsers.get(userPos).searchPlaylistPos(playlistName);
+        int playlistPos = consumersUsers.get(userPos).searchPlaylistPos(playListCode);
         if(playlistPos == -1){
             return msj = "Una playlist con ese nombre no existe";
         }
@@ -171,6 +168,22 @@ public class NeoTunes {
             return msj = "Un audio con ese nombre no existe";
         }
         consumersUsers.get(userPos).removeAudioFromPlaylist(audioPos, playlistPos);
+        return msj;
+    }
+
+    public String createPlaylistWithAnotherPlaylist(String nickNameOwner, String nickName, String code){
+        String msj = "";
+        int ownerPos = searchNickNamePos(nickNameOwner);
+        int userPos = searchNickNamePos(nickName);
+        if(ownerPos == -1 | userPos == -1){
+            return msj = "Alguno de los nicknames no existe.";
+        }
+        int playlistPos = consumersUsers.get(ownerPos).searchPlaylistPos(code);
+        if(playlistPos == -1){
+            return msj = "Una playlist con ese codigo no existe.";
+        }
+        Playlist playlist = consumersUsers.get(ownerPos).getPlaylist(playlistPos);
+        msj = consumersUsers.get(userPos).addPlaylistWithPlaylist(playlist);
         return msj;
     }
 

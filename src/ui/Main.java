@@ -35,6 +35,9 @@ public class Main{
 						   "4. Añadir cancion o podcast\n" +
 						   "5. Crear playlist\n" +
 						   "6. Editar playlist\n" +
+						   "7. Crear playlist con una playlist compartida\n" +
+						   "8. Comprar una cancion\n" +
+						   "9. Generar un informe\n" +
                            "0. Exit. ");
 		option =  validateIntegerInput();
 		return option; 
@@ -51,6 +54,7 @@ public class Main{
 			case 4 -> askKindOfAudio();
 			case 5 -> createPlaylist();
 			case 6 -> editPlaylist();
+			case 7 -> createPlaylistWithAnotherPlaylist();
 			case 0 -> System.out.println("Exit program.");
 			default -> System.out.println("Invalid Option");
 		}
@@ -208,12 +212,12 @@ public class Main{
 
 	public void createPlaylist(){
 		String nickName;
-		String playlistName;
+		String playListCode;
 		int playlistType;
 		System.out.println("Ingrese el NickName del usuario");
 		nickName = reader.nextLine();
 		System.out.println("Ingrese el nombre de la playlist a crear");
-		playlistName = reader.nextLine();
+		playListCode = reader.nextLine();
 		System.out.println("Ingrese el tipo de playlist\n" + 
 						   "1. Solo canciones\n" + 
 						   "2. Solo podcasts\n" + 
@@ -223,7 +227,7 @@ public class Main{
 			System.out.println("Tipo de playlist incorrecto");
 			return;
 		}
-		System.out.println(controller.createPlaylist(nickName, playlistName, playlistType));
+		System.out.println(controller.createPlaylist(nickName, playListCode, playlistType));
 	}
 
 	public void editPlaylist(){
@@ -241,28 +245,41 @@ public class Main{
 
 	public void addAudioToPlaylist(){
 		String nickName;
-		String playlistName;
+		String playlistCode;
 		String audioName;
 		System.out.println("Ingrese el NickName del usuario");
 		nickName = reader.nextLine();
-		System.out.println("Ingrese el nombre de la playlist");
-		playlistName = reader.nextLine();
+		System.out.println("Ingrese el codigo de la playlist");
+		playlistCode = reader.nextLine();
 		System.out.println("Ingrese el nombre del audio a añadir");
 		audioName = reader.nextLine();
-		System.out.println(controller.addAudioToPlaylist(nickName, playlistName, audioName));
+		System.out.println(controller.addAudioToPlaylist(nickName, playlistCode, audioName));
 	}
 
 	public void removeAudioOfPlaylist(){
 		String nickName;
-		String playlistName;
+		String playlistCode;
 		String audioName;
 		System.out.println("Ingrese el nickName");
 		nickName = reader.nextLine();
-		System.out.println("Ingrese el nombre de la playlist");
-		playlistName = reader.nextLine();
+		System.out.println("Ingrese el codigo de la playlist");
+		playlistCode = reader.nextLine();
 		System.out.println("Ingrese el nombre de el audio");
 		audioName = reader.nextLine();
-		System.out.println(controller.removeAudioOfPlaylist(nickName, playlistName, audioName));
+		System.out.println(controller.removeAudioOfPlaylist(nickName, playlistCode, audioName));
+	}
+
+	public void createPlaylistWithAnotherPlaylist(){
+		String nickNameOwner;
+		String nickName;
+		String playlistCode;
+		System.out.println("Ingresa tu nickname");
+		nickName = reader.nextLine();
+		System.out.println("Ingresa el nickname de la persona que te compartio el codigo de su playlist");
+		nickNameOwner = reader.nextLine();
+		System.out.println("Ingresa el codigo de la playlist");
+		playlistCode = reader.nextLine();
+		System.out.println(controller.createPlaylistWithAnotherPlaylist(nickNameOwner, nickName, playlistCode));
 	}
 
 }
