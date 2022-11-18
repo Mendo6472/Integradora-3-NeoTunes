@@ -1,11 +1,12 @@
 package model;
 
-public class StandardUser extends ConsumerUser{
+public class StandardUser extends ConsumerUser implements StandardPlayback{
 
     private final int MAX_PLAYLISTS = 20;
     private final int MAX_DOWNLOADS = 100;
     private int ammountOfPlaylists = 0;
     private int ammountOfDownloads = 0;
+    private int currentReproduction = 0;
 
     public StandardUser(String nickName, String id){
         super(nickName, id);
@@ -40,6 +41,24 @@ public class StandardUser extends ConsumerUser{
         this.ammountOfPlaylists += 1;
         msj += ", se añadio a tu lista de playlists con el codigo " + code + ", NO LO PIERDAS.";
         return msj;
+    }
+
+    public String playAudio(Audio audio){
+        String msj = "";
+        if(!(audio instanceof Podcast)){
+            if(currentReproduction >= 2){
+                currentReproduction = 0;   
+            } else {
+                currentReproduction++;
+            }
+        }
+
+        msj = "Reproduciendo " + audio.getName() + "...";
+        return msj;
+    }
+
+    public int getCurrentReproduction() {
+        return currentReproduction;
     }
 
 }

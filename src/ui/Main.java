@@ -2,6 +2,7 @@ package ui;
 
 import java.util.Scanner;
 import model.NeoTunes;
+import java.util.Date; 
 
 public class Main{
 
@@ -36,7 +37,7 @@ public class Main{
 						   "5. Crear playlist\n" +
 						   "6. Editar playlist\n" +
 						   "7. Crear playlist con una playlist compartida\n" +
-						   "8. Comprar una cancion\n" +
+						   "8. Reproducir un audio\n" +
 						   "9. Generar un informe\n" +
                            "0. Exit. ");
 		option =  validateIntegerInput();
@@ -55,6 +56,7 @@ public class Main{
 			case 5 -> createPlaylist();
 			case 6 -> editPlaylist();
 			case 7 -> createPlaylistWithAnotherPlaylist();
+			case 8 -> playAudio();
 			case 0 -> System.out.println("Exit program.");
 			default -> System.out.println("Invalid Option");
 		}
@@ -286,6 +288,21 @@ public class Main{
 		System.out.println("Ingresa el codigo de la playlist");
 		playlistCode = reader.nextLine();
 		System.out.println(controller.createPlaylistWithAnotherPlaylist(nickNameOwner, nickName, playlistCode));
+	}
+
+	public void playAudio(){
+		String nickname;
+		String audioName;
+		System.out.println("Ingresa tu nickname");
+		nickname = reader.nextLine();
+		System.out.println("Ingresa el nombre del audio a reproducir");
+		audioName = reader.nextLine();
+		System.out.println(controller.playAudio(nickname, audioName));
+		try {
+			Thread.sleep(7000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}   
 	}
 
 }

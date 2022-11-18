@@ -9,12 +9,14 @@ public abstract class ProducerUser {
     protected String imageUrl;
     protected Date registerDate;
     protected ArrayList<Audio> audios;
+    protected int ammountOfPlays;
 
     /**
      * @param name
      * @param imageUrl
      */
     public ProducerUser(String name, String imageUrl){
+        this.ammountOfPlays = 0;
         this.name = name;
         this.imageUrl = imageUrl;
         this.registerDate = new Date(System.currentTimeMillis());

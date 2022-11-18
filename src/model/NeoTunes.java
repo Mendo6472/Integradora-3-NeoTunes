@@ -1,16 +1,24 @@
 package model;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class NeoTunes {
 
     private ArrayList<ConsumerUser> consumersUsers;
     private ArrayList<ProducerUser> producersUsers;
     private ArrayList<Audio> audios;
+    private String[] ads;
+    private Random random;
 
     public NeoTunes(){
         consumersUsers = new ArrayList<ConsumerUser>();
         producersUsers = new ArrayList<ProducerUser>();
+        random = new Random();
         audios = new ArrayList<Audio>();
+        ads = new String[3];
+        ads[0] = "Nike - Just Do It";
+        ads[1] = "Coca-Cola - Open Happiness";
+        ads[2] = "M&Ms - Melts in Your Mouth, Not in Your Hands";
     }
 
     /**
@@ -196,6 +204,32 @@ public class NeoTunes {
         }
         Playlist playlist = consumersUsers.get(ownerPos).getPlaylist(playlistPos);
         msj = consumersUsers.get(userPos).addPlaylistWithPlaylist(playlist);
+        return msj;
+    }
+
+    public String playAudio(String nickname, String audioName){
+        String msj = "";
+        int userPos = searchNickNamePos(nickname);
+        int audioPos = searchAudioPos(audioName);
+        if(userPos == -1){
+            return msj = "Ese usuario no existe";
+        }
+        if(audioPos == -1){
+            return msj = "Ese audio no existe";
+        }
+        if(consumersUsers.get(userPos) instanceof StandardUser){
+            if(audios.get(audioPos) instanceof Podcast){
+                msj = ads[random.nextInt(3)] + "\n";
+                msj += ((StandardUser) consumersUsers.get(userPos)).playAudio(audios.get(audioPos));
+            } else if(((StandardUser) consumersUsers.get(userPos)).getCurrentReproduction() >= 2){
+                msj = ads[random.nextInt(3)] + "\n";
+                msj += ((StandardUser) consumersUsers.get(userPos)).playAudio(audios.get(audioPos));
+            } else {
+                msj = ((StandardUser) consumersUsers.get(userPos)).playAudio(audios.get(audioPos));
+            }
+        } else {
+            msj = ((PremiumUser) consumersUsers.get(userPos)).playAudio(audios.get(audioPos));
+        }
         return msj;
     }
 

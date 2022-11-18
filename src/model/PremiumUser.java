@@ -1,6 +1,6 @@
 package model;
 
-public class PremiumUser extends ConsumerUser{
+public class PremiumUser extends ConsumerUser implements PremiumPlayback{
 
     /**
      * @param nickName
@@ -30,6 +30,12 @@ public class PremiumUser extends ConsumerUser{
         String code = playlist.getCode();
         playlists.add(playlist);
         msj += ", se añadio a tu lista de playlists con el codigo " + code + ", NO LO PIERDAS.";
+        return msj;
+    }
+
+    public String playAudio(Audio audio){
+        String msj;
+        msj = "Reproduciendo " + audio.getName() + "...";
         return msj;
     }
 }
