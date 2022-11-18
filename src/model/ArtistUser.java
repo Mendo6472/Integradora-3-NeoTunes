@@ -14,4 +14,9 @@ public class ArtistUser extends ProducerUser{
         this.valueOfTotalSells = 0;
     }
 
+    public void addAmmountOfSells(double cost){
+        ammountOfSells++;
+        valueOfTotalSells += cost;
+    }
+
 }

@@ -5,7 +5,7 @@ public class StandardUser extends ConsumerUser implements StandardPlayback{
     private final int MAX_PLAYLISTS = 20;
     private final int MAX_DOWNLOADS = 100;
     private int ammountOfPlaylists = 0;
-    private int ammountOfDownloads = 0;
+    private int ammountOfBuys = 0;
     private int currentReproduction = 0;
 
     public StandardUser(String nickName, String id){
@@ -13,7 +13,11 @@ public class StandardUser extends ConsumerUser implements StandardPlayback{
     }
 
     public String buySong(){
-        String msj = "";
+        String msj = "Cancion comprada con exito";
+        if(ammountOfBuys >= 100){
+            return msj = "Capacidad maxima para comprar canciones alcanzada";
+        }
+        ammountOfBuys++;
         return msj;
     }
 
@@ -61,4 +65,7 @@ public class StandardUser extends ConsumerUser implements StandardPlayback{
         return currentReproduction;
     }
 
+    public int getAmmountOfBuys() {
+        return ammountOfBuys;
+    }
 }

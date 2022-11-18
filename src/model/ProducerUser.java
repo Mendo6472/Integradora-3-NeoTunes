@@ -29,5 +29,9 @@ public abstract class ProducerUser {
     public String getName() {
         return name;
     }
+
+    public void addAmmountOfPlays(){
+        ammountOfPlays++;
+    }
     
 }

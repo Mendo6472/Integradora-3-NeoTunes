@@ -230,6 +230,34 @@ public class NeoTunes {
         } else {
             msj = ((PremiumUser) consumersUsers.get(userPos)).playAudio(audios.get(audioPos));
         }
+        audios.get(audioPos).addAmmountOfPlays();
+        String creator = audios.get(audioPos).getCreator();
+        producersUsers.get(searchNamePos(creator)).addAmmountOfPlays();
+        return msj;
+    }
+
+    public String buySong(String songName, String nickname){
+        String msj = "";
+        int userPos = searchNickNamePos(nickname);
+        int songPos = searchAudioPos(songName);
+        if(userPos == -1){
+            return msj = "Ese usuario no existe";
+        }
+        if(songPos == -1){
+            return msj = "Esa cancion no existe";
+        }
+        if(audios.get(songPos) instanceof Podcast){
+            return msj = "Solo se pueden comprar canciones, no podcasts";
+        }
+        msj = consumersUsers.get(userPos).buySong();
+        if(consumersUsers.get(userPos) instanceof StandardUser){
+            if(((StandardUser)consumersUsers.get(userPos)).getAmmountOfBuys() >= 100){
+                return msj;
+            }
+        }
+        ((Song)audios.get(songPos)).addAmmountOfSells();
+        int creatorPos = searchNamePos(audios.get(songPos).getCreator());
+        ((ArtistUser)producersUsers.get(creatorPos)).addAmmountOfSells(((Song)audios.get(songPos)).getCost());
         return msj;
     }
 

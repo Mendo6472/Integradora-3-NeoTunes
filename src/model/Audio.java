@@ -36,4 +36,12 @@ public abstract class Audio {
         return name;
     }
 
+    public void addAmmountOfPlays(){
+        ammountOfPlays++;
+    }
+
+    public String getCreator() {
+        return creator;
+    }
+
 }

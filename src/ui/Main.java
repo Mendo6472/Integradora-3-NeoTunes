@@ -38,7 +38,8 @@ public class Main{
 						   "6. Editar playlist\n" +
 						   "7. Crear playlist con una playlist compartida\n" +
 						   "8. Reproducir un audio\n" +
-						   "9. Generar un informe\n" +
+						   "9. Comprar una cancion\n" +
+						   "10. Generar informes\n" +
                            "0. Exit. ");
 		option =  validateIntegerInput();
 		return option; 
@@ -57,7 +58,35 @@ public class Main{
 			case 6 -> editPlaylist();
 			case 7 -> createPlaylistWithAnotherPlaylist();
 			case 8 -> playAudio();
+			case 9 -> buySong();
+			case 10 -> reportSelect();
 			case 0 -> System.out.println("Exit program.");
+			default -> System.out.println("Invalid Option");
+		}
+	}
+
+	public void reportSelect(){
+		int option = 0; 
+		System.out.println("1. Informar el acumulado total de reproducciones en toda la plataforma.\n" +
+                           "2. Informar el genero de cancion mas escuchado para un usuario\n" +
+                           "3. Informar el genero de cancion mas escuchado para la plataforma\n" +
+						   "4. Informar la categoria de podcast mas escuchada para un usuario\n" +
+						   "5. Informar la categoria de podcast mas escuchada para la plataforma\n" +
+						   "6. Top 5 de artistas y top 5 de creadores de contenido\n" +
+						   "7. Top 10 de canciones y top 10 de podcasts\n" + 
+						   "8. Numero de canciones vendidas y el valor total de ventas de cada genero\n" + 
+						   "9. Numero total de ventas y el valor total de venta de la cancion mas vendida");
+		option =  validateIntegerInput();
+		switch (option) {
+			case 1 -> registerConsumerUser();
+			case 2 -> registerProducerUser();
+			case 3 -> upgradeUser();
+			case 4 -> askKindOfAudio();
+			case 5 -> createPlaylist();
+			case 6 -> editPlaylist();
+			case 7 -> createPlaylistWithAnotherPlaylist();
+			case 8 -> playAudio();
+			case 9 -> buySong();
 			default -> System.out.println("Invalid Option");
 		}
 	}
@@ -305,4 +334,15 @@ public class Main{
 		}   
 	}
 
+	public void buySong(){
+		String songName;
+		String nickname;
+		System.out.println("Ingrese el nombre de la cancion a comprar.");
+		songName = reader.nextLine();
+		System.out.println("Ingrese su nickname");
+		nickname = reader.nextLine();
+		System.out.println(controller.buySong(songName, nickname));
+	}
+
+	
 }

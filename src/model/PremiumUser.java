@@ -11,7 +11,7 @@ public class PremiumUser extends ConsumerUser implements PremiumPlayback{
     }
 
     public String buySong(){
-        String msj = "";
+        String msj = "Se a comprado la cancion con exito";
         return msj;
     }
 

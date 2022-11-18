@@ -5,6 +5,8 @@ public class Song extends Audio{
     private String album;
     private Genre genre;
     private double cost;
+    private int ammountOfSells;
+    private int valueOfTotalSells;
     
 
     /**
@@ -18,6 +20,8 @@ public class Song extends Audio{
      */
     public Song(String name, String creator, String url, String duration, String album, int genre, double cost){
         super(name, url, duration, creator);
+        this.ammountOfSells = 0;
+        this.valueOfTotalSells = 0;
         this.album = album;
         this.cost = cost;
         switch(genre){
@@ -26,5 +30,14 @@ public class Song extends Audio{
             case 3 -> this.genre = Genre.TRAP;
             case 4 -> this.genre = Genre.HOUSE;
         }
+    }
+
+    public void addAmmountOfSells(){
+        ammountOfSells++;
+        valueOfTotalSells += cost;
+    }
+
+    public double getCost() {
+        return cost;
     }
 }
