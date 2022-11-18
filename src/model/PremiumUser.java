@@ -1,6 +1,6 @@
 package model;
 
-public class PremiumUser extends ConsumerUser implements PremiumPlayback{
+public class PremiumUser extends ConsumerUser implements Playback{
 
     /**
      * @param nickName

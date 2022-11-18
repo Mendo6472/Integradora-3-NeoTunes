@@ -32,6 +32,18 @@ public class Song extends Audio{
         }
     }
 
+    public String getAlbum() {
+        return album;
+    }
+
+    public int getAmmountOfSells() {
+        return ammountOfSells;
+    }
+
+    public int getValueOfTotalSells() {
+        return valueOfTotalSells;
+    }
+
     public void addAmmountOfSells(){
         ammountOfSells++;
         valueOfTotalSells += cost;

@@ -1,5 +1,5 @@
 package model;
 
-public interface PremiumPlayback {
+public interface Playback {
     public String playAudio(Audio audio);
 }

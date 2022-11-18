@@ -1,9 +1,9 @@
 package model;
 
-public class StandardUser extends ConsumerUser implements StandardPlayback{
+public class StandardUser extends ConsumerUser implements Playback{
 
     private final int MAX_PLAYLISTS = 20;
-    private final int MAX_DOWNLOADS = 100;
+    private final int MAX_BUYS = 100;
     private int ammountOfPlaylists = 0;
     private int ammountOfBuys = 0;
     private int currentReproduction = 0;
@@ -14,7 +14,7 @@ public class StandardUser extends ConsumerUser implements StandardPlayback{
 
     public String buySong(){
         String msj = "Cancion comprada con exito";
-        if(ammountOfBuys >= 100){
+        if(ammountOfBuys >= MAX_BUYS){
             return msj = "Capacidad maxima para comprar canciones alcanzada";
         }
         ammountOfBuys++;

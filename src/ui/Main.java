@@ -2,7 +2,6 @@ package ui;
 
 import java.util.Scanner;
 import model.NeoTunes;
-import java.util.Date; 
 
 public class Main{
 
@@ -371,18 +370,18 @@ public class Main{
 	}
 
 	public void top5ArtistAndCreators(){
-
+		System.out.println(controller.top5ArtistAndCreators());
 	}
 
 	public void top10SongsAndPodcasts(){
-
+		System.out.println(controller.top10SongsAndPodcasts());
 	}
 	
 	public void sellsOfEachGenre(){
-
+		System.out.println(controller.sellsOfEachGenre());
 	}
 
 	public void mostSoldSong(){
-		
+		System.out.println(controller.mostSoldSong());
 	}
 }

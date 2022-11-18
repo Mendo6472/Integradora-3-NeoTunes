@@ -27,4 +27,8 @@ public class Podcast extends Audio{
     public Category getCategory() {
         return category;
     }
+
+    public String getDescription() {
+        return description;
+    }
 }

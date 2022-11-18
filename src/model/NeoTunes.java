@@ -367,6 +367,231 @@ public class NeoTunes {
         return msj;
     }
 
+    public String top5ArtistAndCreators(){
+        String msj = "Top 5 artistas:\n";
+        msj += top5Artist() + "\n" + "Top 5 creadores de contenido:\n";
+        msj += top5Creators();
+        return msj;
+    }
+
+    public String top5Artist(){
+        String msj = "Top | Name | Plays\n";
+		String[] names = new String[5];
+		double[] plays = new double[5];
+		int producerPlays;
+		String name;
+		int position;
+		for(int i = 0; i < 5; i++){
+			names[i] = "-----";
+		}
+		for(int i = 0; i < producersUsers.size(); i++){
+            if(producersUsers.get(i) instanceof ArtistUser){
+                producerPlays = producersUsers.get(i).getAmmountOfPlays();
+				name = producersUsers.get(i).getName();
+				position = -1;
+				for(int j = 0; j < 5; j++){
+					if(producerPlays > plays[j]){
+						position = j;
+					}
+				}
+				for(int j = 1; j <= position; j++){
+					plays[j-1] = plays[j];
+					names[j-1] = names[j];
+				}
+				if(position != -1){
+					plays[position] = producerPlays;
+					names[position] = name;
+				}
+            }
+		}
+		int top = 1;
+		for(int i = 4; i>=0; i--){
+			msj += top + " | " + names[i]+" | " + plays[i] + "\n";
+			top++;
+		}
+        return msj;
+    }
+
+    public String top5Creators(){
+        String msj = "Top | Name | Plays\n";
+		String[] names = new String[5];
+		double[] plays = new double[5];
+		int producerPlays;
+		String name;
+		int position;
+		for(int i = 0; i < 5; i++){
+			names[i] = "-----";
+		}
+		for(int i = 0; i < producersUsers.size(); i++){
+            if(producersUsers.get(i) instanceof ContentCreatorUser){
+                producerPlays = producersUsers.get(i).getAmmountOfPlays();
+				name = producersUsers.get(i).getName();
+				position = -1;
+				for(int j = 0; j < 5; j++){
+					if(producerPlays > plays[j]){
+						position = j;
+					}
+				}
+				for(int j = 1; j <= position; j++){
+					plays[j-1] = plays[j];
+					names[j-1] = names[j];
+				}
+				if(position != -1){
+					plays[position] = producerPlays;
+					names[position] = name;
+				}
+            }
+		}
+		int top = 1;
+		for(int i = 4; i>=0; i--){
+			msj += top + " | " + names[i]+" | " + plays[i] + "\n";
+			top++;
+		}
+        return msj;
+    }
+
+    public String top10SongsAndPodcasts(){
+        String msj = "Top 10 canciones:\n";
+        msj += top5Artist() + "\n" + "Top 10 podcasts:\n";
+        msj += top5Creators();
+        return msj;
+    }
+
+    public String top10Songs(){
+        String msj = "Top | Name | Plays\n";
+		String[] names = new String[10];
+		double[] plays = new double[10];
+		int audioPlays;
+		String name;
+		int position;
+		for(int i = 0; i < 5; i++){
+			names[i] = "-----";
+		}
+		for(int i = 0; i < audios.size(); i++){
+            if(audios.get(i) instanceof Song){
+                audioPlays = audios.get(i).getAmmountOfPlays();
+				name = audios.get(i).getName();
+				position = -1;
+				for(int j = 0; j < 5; j++){
+					if(audioPlays > plays[j]){
+						position = j;
+					}
+				}
+				for(int j = 1; j <= position; j++){
+					plays[j-1] = plays[j];
+					names[j-1] = names[j];
+				}
+				if(position != -1){
+					plays[position] = audioPlays;
+					names[position] = name;
+				}
+            }
+		}
+		int top = 1;
+		for(int i = 4; i>=0; i--){
+			msj += top + " | " + names[i]+" | " + plays[i] + "\n";
+			top++;
+		}
+        return msj;
+    }
+
+    public String top10Podcasts(){
+        String msj = "Top | Name | Plays\n";
+		String[] names = new String[10];
+		double[] plays = new double[10];
+		int audioPlays;
+		String name;
+		int position;
+		for(int i = 0; i < 5; i++){
+			names[i] = "-----";
+		}
+		for(int i = 0; i < audios.size(); i++){
+            if(audios.get(i) instanceof Podcast){
+                audioPlays = audios.get(i).getAmmountOfPlays();
+				name = audios.get(i).getName();
+				position = -1;
+				for(int j = 0; j < 5; j++){
+					if(audioPlays > plays[j]){
+						position = j;
+					}
+				}
+				for(int j = 1; j <= position; j++){
+					plays[j-1] = plays[j];
+					names[j-1] = names[j];
+				}
+				if(position != -1){
+					plays[position] = audioPlays;
+					names[position] = name;
+				}
+            }
+		}
+		int top = 1;
+		for(int i = 4; i>=0; i--){
+			msj += top + " | " + names[i]+" | " + plays[i] + "\n";
+			top++;
+		}
+        return msj;
+    }
+
+    public String sellsOfEachGenre(){
+        String msj = "";
+        int[] sells = new int[4];
+        int[] valueOfSells = new int[4];
+        for(int i = 0; i < audios.size(); i++) {
+            if(audios.get(i) instanceof Song){
+                Song song = ((Song)audios.get(i));
+                switch(song.getGenre()){
+                    case ROCK:
+                        sells[0] += song.getAmmountOfSells();
+                        valueOfSells[0] += song.getValueOfTotalSells();
+                    break;
+
+                    case POP:
+                        sells[1] += song.getAmmountOfSells();
+                        valueOfSells[1] += song.getValueOfTotalSells();
+                    break;
+
+                    case TRAP:
+                        sells[2] += song.getAmmountOfSells();
+                        valueOfSells[2] += song.getValueOfTotalSells(); 
+                    break;
+
+                    case HOUSE:
+                        sells[3] += song.getAmmountOfSells();
+                        valueOfSells[3] += song.getValueOfTotalSells();
+                    break;
+                }
+            }
+        }
+        msj += "Numero de canciones vendidas de rock: " + sells[0] + ", valor total de ventas: " + valueOfSells[0] + "\n";
+        msj += "Numero de canciones vendidas de pop: " + sells[1] + ", valor total de ventas: " + valueOfSells[1] + "\n";
+        msj += "Numero de canciones vendidas de trap: " + sells[2] + ", valor total de ventas: " + valueOfSells[2] + "\n";
+        msj += "Numero de canciones vendidas de house: " + sells[3] + ", valor total de ventas: " + valueOfSells[3] + "\n";
+        return msj;
+    }
+   
+    public String mostSoldSong(){
+        String msj = "";
+        int mostSoldAmmount = 0;
+        int mostSoldValue = 0;
+        int mostSoldSongPos = -1;
+        for(int i = 0; i < audios.size(); i++){
+            if(audios.get(i) instanceof Song){
+                Song song = ((Song)audios.get(i));
+                if(song.getAmmountOfSells() > mostSoldAmmount){
+                    mostSoldAmmount = song.getAmmountOfSells();
+                    mostSoldValue = song.getValueOfTotalSells();
+                    mostSoldSongPos = i;
+                }
+            }
+        }
+        if(mostSoldSongPos == -1){
+            return msj = "No hay cancion con mayor cantidad de ventas";
+        }
+        msj = "La cancion con mas ventas es: " + audios.get(mostSoldSongPos).getName() + ", con un total de " + mostSoldAmmount + " ventas y un valor todal de " + mostSoldValue;
+        return msj;
+    }
+
     /**
      * @param nickName
      * @return
@@ -414,5 +639,4 @@ public class NeoTunes {
         }
         return pos;
     }
-
 }

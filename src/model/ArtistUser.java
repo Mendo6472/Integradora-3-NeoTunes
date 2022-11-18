@@ -19,4 +19,12 @@ public class ArtistUser extends ProducerUser{
         valueOfTotalSells += cost;
     }
 
+    public int getAmmountOfSells() {
+        return ammountOfSells;
+    }
+
+    public int getValueOfTotalSells() {
+        return valueOfTotalSells;
+    }
+
 }

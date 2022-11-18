@@ -30,6 +30,10 @@ public abstract class ProducerUser {
         return name;
     }
 
+    public int getAmmountOfPlays() {
+        return ammountOfPlays;
+    }
+
     public void addAmmountOfPlays(){
         ammountOfPlays++;
     }
