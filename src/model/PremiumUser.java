@@ -10,7 +10,7 @@ public class PremiumUser extends ConsumerUser{
         super(nickName, id);
     }
 
-    public String downloadSong(){
+    public String buySong(){
         String msj = "";
         return msj;
     }

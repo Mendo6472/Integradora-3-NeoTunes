@@ -13,8 +13,8 @@ public class Podcast extends Audio{
      * @param description
      * @param category
      */
-    public Podcast(String name, String url, String duration, int durationInSeconds, String description, int category){
-        super(name, url, duration, durationInSeconds);
+    public Podcast(String name, String creator, String url, String duration, String description, int category){
+        super(name, url, duration, creator);
         this.description = description;
         switch(category){
             case 1 -> this.category = Category.POLITICS;

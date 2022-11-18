@@ -83,10 +83,16 @@ public class NeoTunes {
      * @param cost
      * @return
      */
-    public String addSong(String name, String album, int genre, String url, String duration, double cost){
+    public String addSong(String name, String artistName, String album, int genre, String url, String duration, double cost){
         String msj = "Cancion añadida exitosamente";
-        int durationInSeconds = 0; //TODO - calculate duration in seconds
-        Audio song = new Song(name, url, duration, durationInSeconds, album, genre, cost);
+        Audio song = new Song(name, artistName, url, duration, album, genre, cost);
+        int artistPos = searchNamePos(artistName);
+        if(artistPos == -1){
+            return msj = "Ese artista no existe";
+        }
+        if(!(producersUsers.get(artistPos) instanceof ArtistUser)){
+            return msj = "Las canciones solo pueden ser creadas por usuarios artistas.";
+        }
         audios.add(song);
         return msj;
     }
@@ -99,10 +105,16 @@ public class NeoTunes {
      * @param duration
      * @return
      */
-    public String addPodcast(String name, String description, int category, String url, String duration){
+    public String addPodcast(String name, String creatorName ,String description, int category, String url, String duration){
         String msj = "Podcast añadido exitosamente";
-        int durationInSeconds = 0; //TODO - calculate duration in seconds
-        Audio podcast = new Podcast(name, url, duration, durationInSeconds, description, category);
+        Audio podcast = new Podcast(name, creatorName, url, duration, description, category);
+        int creatorPos = searchNamePos(creatorName);
+        if(creatorPos == -1){
+            return msj = "Ese artista no existe";
+        }
+        if(!(producersUsers.get(creatorPos) instanceof ContentCreatorUser)){
+            return msj = "Los podcasts solo pueden ser creados por usuarios creadores de contenido.";
+        }
         audios.add(podcast);
         return msj;
     }

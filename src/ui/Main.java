@@ -151,6 +151,7 @@ public class Main{
 
 	public void addSong(){
 		String name;
+		String artistName;
 		String album;
 		int genre;
 		String url;
@@ -158,6 +159,8 @@ public class Main{
 		double cost;
 		System.out.println("Ingrese el nombre");
 		name = reader.nextLine();
+		System.out.println("Ingrese el nombre del artista");
+		artistName = reader.nextLine();
 		System.out.println("Ingrese el album");
 		album = reader.nextLine();
 		System.out.println("Ingrese el genero\n" +
@@ -180,17 +183,20 @@ public class Main{
 			System.out.println("Costo incorrecto");
 			return;
 		}
-		System.out.println(controller.addSong(name, album, genre, url, duration, cost));
+		System.out.println(controller.addSong(name, artistName, album, genre, url, duration, cost));
 	}
 
 	public void addPodcast(){
 		String name;
+		String creatorName;
 		String description;
 		int category;
 		String url;
 		String duration;
 		System.out.println("Ingrese el nombre");
 		name = reader.nextLine();
+		System.out.println("Ingrese el nombre del creador de contenido.");
+		creatorName = reader.nextLine();
 		System.out.println("Ingrese la descripcion");
 		description = reader.nextLine();
 		System.out.println("Ingrese la categoria\n" + 
@@ -207,7 +213,7 @@ public class Main{
 		url = reader.nextLine();
 		System.out.println("Ingrese la duracion (xx:xx:xx)");
 		duration = reader.nextLine();
-		System.out.println(controller.addPodcast(name, description, category, url, duration));
+		System.out.println(controller.addPodcast(name, creatorName, description, category, url, duration));
 	}
 
 	public void createPlaylist(){

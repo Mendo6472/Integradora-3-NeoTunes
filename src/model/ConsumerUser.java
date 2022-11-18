@@ -102,7 +102,7 @@ public abstract class ConsumerUser {
     /**
      * @return
      */
-    public abstract String downloadSong();
+    public abstract String buySong();
 
     /**
      * @param name

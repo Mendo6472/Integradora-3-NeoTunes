@@ -16,8 +16,8 @@ public class Song extends Audio{
      * @param genre
      * @param cost
      */
-    public Song(String name, String url, String duration, int durationInSeconds, String album, int genre, double cost){
-        super(name, url, duration, durationInSeconds);
+    public Song(String name, String creator, String url, String duration, String album, int genre, double cost){
+        super(name, url, duration, creator);
         this.album = album;
         this.cost = cost;
         switch(genre){

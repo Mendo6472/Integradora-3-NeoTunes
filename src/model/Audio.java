@@ -6,7 +6,7 @@ public abstract class Audio {
     protected String url;
     protected int ammountOfPlays;
     protected String duration;
-    protected int durationInSeconds;
+    protected String creator;
 
     /**
      * @param name
@@ -14,12 +14,12 @@ public abstract class Audio {
      * @param duration
      * @param durationInSeconds
      */
-    public Audio(String name, String url, String duration, int durationInSeconds){
+    public Audio(String name, String url, String duration, String creator){
         this.name = name;
         this.url = url;
         this.ammountOfPlays = 0;
         this.duration = duration;
-        this.durationInSeconds = durationInSeconds;
+        this.creator = creator;
     }
 
     /**
