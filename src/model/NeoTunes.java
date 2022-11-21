@@ -191,6 +191,12 @@ public class NeoTunes {
         return msj;
     }
 
+    /**
+     * @param nickNameOwner
+     * @param nickName
+     * @param code
+     * @return
+     */
     public String createPlaylistWithAnotherPlaylist(String nickNameOwner, String nickName, String code){
         String msj = "";
         int ownerPos = searchNickNamePos(nickNameOwner);
@@ -207,6 +213,11 @@ public class NeoTunes {
         return msj;
     }
 
+    /**
+     * @param nickname
+     * @param audioName
+     * @return
+     */
     public String playAudio(String nickname, String audioName){
         String msj = "";
         int userPos = searchNickNamePos(nickname);
@@ -230,8 +241,8 @@ public class NeoTunes {
         } else {
             msj = ((PremiumUser) consumersUsers.get(userPos)).playAudio(audios.get(audioPos));
         }
+        audios.get(audioPos).addAmmountOfPlays();
         Audio audio = audios.get(audioPos);
-        audio.addAmmountOfPlays();
         String creator = audio.getCreator();
         producersUsers.get(searchNamePos(creator)).addAmmountOfPlays();
         if(audios.get(audioPos) instanceof Song){
@@ -242,6 +253,11 @@ public class NeoTunes {
         return msj;
     }
 
+    /**
+     * @param songName
+     * @param nickname
+     * @return
+     */
     public String buySong(String songName, String nickname){
         String msj = "";
         int userPos = searchNickNamePos(nickname);
@@ -267,6 +283,9 @@ public class NeoTunes {
         return msj;
     }
 
+    /**
+     * @return
+     */
     public String totalPlays(){
         String msj = "En total se tienen ";
         int totalPlays = 0;
@@ -277,6 +296,10 @@ public class NeoTunes {
         return msj;
     }
 
+    /**
+     * @param nickname
+     * @return
+     */
     public String mostPlayedGenreForAnUser(String nickname){
         String msj = "";
         int userPos = searchNickNamePos(nickname);
@@ -287,6 +310,10 @@ public class NeoTunes {
         return msj;
     }
 
+    /**
+     * @param nickname
+     * @return
+     */
     public String mostPlayedCategoryForAnUser(String nickname){
         String msj = "";
         int userPos = searchNickNamePos(nickname);
@@ -297,6 +324,9 @@ public class NeoTunes {
         return msj;
     }
 
+    /**
+     * @return
+     */
     public String mostPlayedGenre(){
         String msj = "";
         int[] plays = new int[4]; 
@@ -332,6 +362,9 @@ public class NeoTunes {
         return msj;
     }
 
+    /**
+     * @return
+     */
     public String mostPlayedCategory(){
         String msj = "";
         int[] plays = new int[4];
@@ -367,6 +400,9 @@ public class NeoTunes {
         return msj;
     }
 
+    /**
+     * @return
+     */
     public String top5ArtistAndCreators(){
         String msj = "Top 5 artistas:\n";
         msj += top5Artist() + "\n" + "Top 5 creadores de contenido:\n";
@@ -374,6 +410,9 @@ public class NeoTunes {
         return msj;
     }
 
+    /**
+     * @return
+     */
     public String top5Artist(){
         String msj = "Top | Name | Plays\n";
 		String[] names = new String[5];
@@ -412,6 +451,9 @@ public class NeoTunes {
         return msj;
     }
 
+    /**
+     * @return
+     */
     public String top5Creators(){
         String msj = "Top | Name | Plays\n";
 		String[] names = new String[5];
@@ -450,6 +492,9 @@ public class NeoTunes {
         return msj;
     }
 
+    /**
+     * @return
+     */
     public String top10SongsAndPodcasts(){
         String msj = "Top 10 canciones:\n";
         msj += top5Artist() + "\n" + "Top 10 podcasts:\n";
@@ -457,6 +502,9 @@ public class NeoTunes {
         return msj;
     }
 
+    /**
+     * @return
+     */
     public String top10Songs(){
         String msj = "Top | Name | Plays\n";
 		String[] names = new String[10];
@@ -495,6 +543,9 @@ public class NeoTunes {
         return msj;
     }
 
+    /**
+     * @return
+     */
     public String top10Podcasts(){
         String msj = "Top | Name | Plays\n";
 		String[] names = new String[10];
@@ -533,6 +584,9 @@ public class NeoTunes {
         return msj;
     }
 
+    /**
+     * @return
+     */
     public String sellsOfEachGenre(){
         String msj = "";
         int[] sells = new int[4];
@@ -570,6 +624,9 @@ public class NeoTunes {
         return msj;
     }
    
+    /**
+     * @return
+     */
     public String mostSoldSong(){
         String msj = "";
         int mostSoldAmmount = 0;
